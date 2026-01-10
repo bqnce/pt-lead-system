@@ -4,16 +4,16 @@ export const demoCoach: CoachConfig = {
   slug: "demo",
   template: "minimal",
   brand: {
-    name: "Demo Edző",
+    name: "NEXT LEVEL",
     city: "Budapest",
     avatarUrl: "/file.svg",
   },
   hero: {
-    headline: "Segítek, hogy végre következetesen eddz és láthatóan fejlődj.",
-    subheadline: "Ingyenes konzultációval indulunk, ahol tisztázzuk a célod és a következő lépéseket.",
-    primaryCtaText: "Jelentkezem ingyenes konzultációra",
+    headline: "Formáld át az életed.",
+    subheadline: "Személyre szabott edzésterv és táplálkozási tanácsadás, hogy elérd a céljaidat – kompromisszumok nélkül.",
+    primaryCtaText: "Jelentkezem",
     heroImageUrl: "/globe.svg",
-    badges: ["Kezdőbarát", "Személyre szabott", "Felelősségre vonás"],
+    badges: ["Erőnlét", "Életmód", "Mobilitás"],
   },
   contact: {
     emailTo: "csobadibence@gmail.com",
