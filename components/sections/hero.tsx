@@ -86,11 +86,11 @@ export function Hero({ coach }: { coach: CoachConfig }) {
           {coach.hero.badges?.length ? (
             <motion.div 
               variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-              className="mt-12 flex flex-wrap gap-x-8 gap-y-3 pt-8 border-t border-slate-100 w-full"
+              className="mt-12 flex flex-wrap gap-x-8 gap-y-3 pt-8 border-t border-slate-300 w-full"
             >
               {coach.hero.badges.map((b) => (
                 <div key={b} className="flex items-center gap-2.5">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-200 text-blue-600">
                     <Check className="h-3.5 w-3.5" strokeWidth={3} />
                   </div>
                   <span className="text-sm font-bold text-slate-700 uppercase tracking-wide">{b}</span>
@@ -106,9 +106,9 @@ export function Hero({ coach }: { coach: CoachConfig }) {
           className="relative lg:ml-auto w-full max-w-md lg:max-w-none mt-8 lg:mt-0"
         >
           {/* Háttér keret - Kék */}
-          <div className="absolute -inset-3 bg-gradient-to-tr from-blue-100 to-slate-50 rounded-[2.5rem] -z-10 -rotate-2" />
+          <div className="absolute -inset-3 bg-linear-to-tr from-blue-100 to-slate-50 rounded-[2.5rem] -z-10 -rotate-2" />
           
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-slate-200 shadow-2xl shadow-blue-900/10 lg:aspect-square">
+          <div className="relative aspect-4/5 w-full overflow-hidden rounded-4xl bg-slate-200 shadow-2xl shadow-blue-900/10 lg:aspect-square">
             <Image
               src={coach.hero.heroImageUrl ?? "/next.svg"}
               alt={`${coach.brand.name} hero`}
@@ -117,7 +117,7 @@ export function Hero({ coach }: { coach: CoachConfig }) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-40" />
+            <div className="absolute inset-0 bg-linear-to-t from-slate-900/20 via-transparent to-transparent opacity-40" />
           </div>
         </motion.div>
       </motion.div>
