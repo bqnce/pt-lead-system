@@ -20,7 +20,7 @@ export default async function CoachPage({
   }
 
   return (
-    <main>
+    <main className="overflow-hidden">
       <TemplateMinimal coach={coach} />
     </main>
   );

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { AnimatedBackground } from "@/components/ui/animated-background";
 import { SmoothScroller } from "@/components/ui/smooth-scroller";
 import "./globals.css";
 
@@ -24,8 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={sora.variable}>
-      <body className={`${sora.className} bg-transparent`}>
-        <AnimatedBackground />
+      <body className={`${sora.className} bg-transparent overflow-x-hidden antialiased`}>
         <SmoothScroller />
 
         <ThemeProvider>

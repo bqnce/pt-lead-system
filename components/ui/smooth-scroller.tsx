@@ -6,7 +6,7 @@ import Lenis from "lenis";
 export function SmoothScroller() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.5, // Minél nagyobb, annál "lassabb" és puhább a scroll (alap: 1.0)
+      duration: 1, // Minél nagyobb, annál "lassabb" és puhább a scroll (alap: 1.0)
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Finom megállás (ease-out)
       orientation: "vertical",
       gestureOrientation: "vertical",

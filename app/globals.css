@@ -6,8 +6,9 @@
     --foreground: 222.2 84% 4.9%;
   }
 
-  body {
-    background-color: transparent !important;
-    @apply bg-transparent text-slate-900 antialiased;
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
   }
+
 }
