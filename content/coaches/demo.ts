@@ -127,11 +127,48 @@ export const demoCoach: CoachConfig = {
         },
       ],
     },
+    testimonials: {
+      title: "Visszajelzések",
+      subtitle: "Néhány rövid tapasztalat az elmúlt időszakból.",
+      items: [
+        {
+          name: "Dani",
+          meta: "8 hét • -6 kg",
+          text: "Végre egy rendszer, amit tudok tartani. Nem éhezem, mégis látványos a változás.",
+          rating: 5,
+        },
+        {
+          name: "Nóri",
+          meta: "12 hét • formásodás",
+          text: "Az első héten rend lett a fejemben. Pontosan tudtam mit csináljak, és végre következetes lettem.",
+          rating: 5,
+        },
+        {
+          name: "Bence",
+          meta: "4 hét • erőnövekedés",
+          text: "Nem csak edzésterv, hanem valódi támogatás. Sokkal magabiztosabb lettem a teremben.",
+          rating: 5,
+        },
+        {
+          name: "Dani",
+          meta: "8 hét • -6 kg",
+          text: "Végre egy rendszer, amit tudok tartani. Nem éhezem, mégis látványos a változás.",
+          rating: 5,
+        },
+        {
+          name: "Nóri",
+          meta: "12 hét • formásodás",
+          text: "Az első héten rend lett a fejemben. Pontosan tudtam mit csináljak, és végre következetes lettem.",
+          rating: 5,
+        },
+      ],
+    },
   },
   nav: {
     items: [
       { id: "coachCard", label: "Rólam" },
-      { id: "for-who", label: "Kinek ajánlom?" },
+      { id: "testimonials", label: "Vélemények" },
+      { id: "for-who", label: "Kinek?" },
       { id: "process", label: "Folyamat" },
       { id: "pricing", label: "Csomagok" },
       { id: "faq", label: "GYIK" },

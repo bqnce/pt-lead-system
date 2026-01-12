@@ -11,6 +11,13 @@ export type CoachNavItem = {
   show?: boolean; // opcionális: gyors ki/be
 };
 
+export type Testimonial = {
+  name: string;
+  meta?: string;
+  text: string;
+  rating?: 1 | 2 | 3 | 4 | 5;
+};
+
 export type CoachConfig = {
   slug: string;
   template: CoachTemplate;
@@ -24,8 +31,8 @@ export type CoachConfig = {
   nav?: {
     items: CoachNavItem[];
     cta?: {
-      label: string;   // pl. "Jelentkezem"
-      href: string;    // pl. "#apply"
+      label: string; // pl. "Jelentkezem"
+      href: string; // pl. "#apply"
     };
   };
 
@@ -67,6 +74,11 @@ export type CoachConfig = {
         ctaText?: string; // pl. "Jelentkezem erre"
       }[];
       disclaimer?: string; // pl. "Árak tájékoztató jellegűek..."
+    };
+    testimonials?: {
+      title?: string;
+      subtitle?: string;
+      items: Testimonial[];
     };
   };
 };
