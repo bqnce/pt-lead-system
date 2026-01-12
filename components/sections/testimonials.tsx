@@ -139,7 +139,7 @@ export function Testimonials({ coach }: { coach: CoachConfig }) {
               className="w-full bg-white rounded-4xl border border-slate-200 p-10 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden"
             >
               {/* Decorative Quote Icon */}
-              <div className="absolute top-10 right-10 text-slate-100 -z-0">
+              <div className="absolute top-10 right-10 text-slate-100 z-0">
                  <Quote className="w-24 h-24 fill-current opacity-50" />
               </div>
               

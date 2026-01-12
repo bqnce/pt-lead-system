@@ -178,4 +178,21 @@ export const demoCoach: CoachConfig = {
       href: "#apply",
     },
   },
+
+  footer: {
+    brandLine: "Személyi edzés • Online coaching",
+
+    socials: {
+      instagram: "https://instagram.com/demo_coach",
+      facebook: "https://facebook.com/demo_coach",
+      youtube: "https://youtube.com/demo_coach",
+      email: "hello@democoach.hu",
+    },
+
+    legal: {
+      imprintUrl: "/impresszum",
+      privacyUrl: "/adatkezeles",
+      termsUrl: "/aszf",
+    },
+  },
 };

@@ -8,6 +8,7 @@ import { CoachCard } from "@/components/sections/coach-card";
 import { Pricing } from "@/components/sections/pricing";
 import { Navbar } from "@/components/sections/navbar";
 import { Testimonials } from "../sections/testimonials";
+import { Footer } from "../layout/footer";
 
 export function TemplateMinimal({ coach }: { coach: CoachConfig }) {
   return (
@@ -21,6 +22,7 @@ export function TemplateMinimal({ coach }: { coach: CoachConfig }) {
       <Pricing coach={coach} />
       <FAQ coach={coach} />
       <LeadForm coach={coach} />
+      <Footer coach={coach} />
     </>
   );
 }

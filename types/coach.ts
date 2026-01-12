@@ -18,6 +18,26 @@ export type Testimonial = {
   rating?: 1 | 2 | 3 | 4 | 5;
 };
 
+export type CoachSocials = {
+  instagram?: string;
+  facebook?: string;
+  youtube?: string;
+  email?: string;
+};
+
+export type CoachFooter = {
+  brandLine?: string;
+
+  socials?: CoachSocials;
+
+  legal?: {
+    imprintUrl?: string;
+    privacyUrl?: string;
+    termsUrl?: string;
+  };
+};
+
+
 export type CoachConfig = {
   slug: string;
   template: CoachTemplate;
@@ -81,4 +101,5 @@ export type CoachConfig = {
       items: Testimonial[];
     };
   };
+  footer?: CoachFooter;
 };
