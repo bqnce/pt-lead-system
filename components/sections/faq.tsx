@@ -31,10 +31,10 @@ function FAQItem({
           },
         },
       }}
-      className={`group overflow-hidden rounded-[2rem] border transition-all duration-500 ${
+      className={`group overflow-hidden rounded-4xl border transition-all duration-500 ${
         isOpen
-          ? "border-blue-200 bg-white shadow-[0_32px_64px_-16px_rgba(59,130,246,0.1)] -translate-y-2"
-          : "border-slate-100 bg-white/40 hover:bg-white hover:border-slate-200 hover:shadow-lg"
+          ? "border-blue-400 bg-white shadow-[0_32px_64px_-16px_rgba(59,130,246,0.1)] -translate-y-2"
+          : "border-slate-300 bg-white/40 hover:bg-white hover:border-slate-200 hover:shadow-lg"
       }`}
     >
       <button
@@ -50,7 +50,7 @@ function FAQItem({
         </span>
 
         <div
-          className={`relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-500 ${
+          className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-500 ${
             isOpen
               ? "bg-blue-600 text-white shadow-lg shadow-blue-200 rotate-90"
               : "bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500"
@@ -67,7 +67,7 @@ function FAQItem({
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
+            initial={false}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -91,23 +91,23 @@ export function FAQ({ coach }: { coach: CoachConfig }) {
   if (!items?.length) return null;
 
   return (
-    <Section id="faq">
+    <Section id="faq" className="pt-20">
       <div className="mx-auto max-w-4xl">
         <div className="mb-20 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm mb-6"
           >
             <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            <span className="animate-shimmer bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
+            <span className="animate-shimmer bg-clip-text text-transparent bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
               Tudnivalók
             </span>
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight"
@@ -115,7 +115,7 @@ export function FAQ({ coach }: { coach: CoachConfig }) {
             Gyakori kérdések
           </motion.h2>
           <motion.div
-            initial={{ width: 0 }}
+            initial={false}
             whileInView={{ width: "80px" }}
             viewport={{ once: true }}
             className="mt-4 h-1.5 bg-blue-600 rounded-full mx-auto"
@@ -123,7 +123,7 @@ export function FAQ({ coach }: { coach: CoachConfig }) {
         </div>
 
         <motion.div
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           className="space-y-6"

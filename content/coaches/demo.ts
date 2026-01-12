@@ -65,20 +65,20 @@ export const demoCoach: CoachConfig = {
     faq: [
       {
         q: "Kezdőként is belevághatok?",
-        a: "Természetesen! A program lényege éppen az, hogy az aktuális szintedhez igazítjuk a tempót és a feladatokat. Nem számít hol tartasz most, csak az, hova akarsz eljutni."
+        a: "Természetesen! A program lényege éppen az, hogy az aktuális szintedhez igazítjuk a tempót és a feladatokat. Nem számít hol tartasz most, csak az, hova akarsz eljutni.",
       },
       {
         q: "Mennyi időt vesz igénybe naponta?",
-        a: "Az edzések és az étrend is úgy lesz kialakítva, hogy beleférjen a napirendedbe. Átlagosan napi 30-60 perc fókuszált figyelem már látványos eredményt hoz."
+        a: "Az edzések és az étrend is úgy lesz kialakítva, hogy beleférjen a napirendedbe. Átlagosan napi 30-60 perc fókuszált figyelem már látványos eredményt hoz.",
       },
       {
         q: "Van lehetőség személyes edzésre?",
-        a: "A fő programom online alapú, de bizonyos csomagok esetén (pl. Elite Mentor) van lehetőség havi egy személyes konzultációra és technikai finomhangolásra Budapesten."
+        a: "A fő programom online alapú, de bizonyos csomagok esetén (pl. Elite Mentor) van lehetőség havi egy személyes konzultációra és technikai finomhangolásra Budapesten.",
       },
       {
         q: "Hogyan tudok fizetni?",
-        a: "Biztonságos bankkártyás fizetéssel (Stripe) vagy banki átutalással is rendezheted a mentorálás díját. Havi előfizetéses rendszerben dolgozunk, ami bármikor lemondható."
-      }
+        a: "Biztonságos bankkártyás fizetéssel (Stripe) vagy banki átutalással is rendezheted a mentorálás díját. Havi előfizetéses rendszerben dolgozunk, ami bármikor lemondható.",
+      },
     ],
     pricing: {
       title: "Válassz utat a fejlődéshez",
@@ -126,6 +126,19 @@ export const demoCoach: CoachConfig = {
           ],
         },
       ],
+    },
+  },
+  nav: {
+    items: [
+      { id: "coachCard", label: "Rólam" },
+      { id: "for-who", label: "Kinek ajánlom?" },
+      { id: "process", label: "Folyamat" },
+      { id: "pricing", label: "Csomagok" },
+      { id: "faq", label: "GYIK" },
+    ],
+    cta: {
+      label: "Jelentkezem",
+      href: "#apply",
     },
   },
 };

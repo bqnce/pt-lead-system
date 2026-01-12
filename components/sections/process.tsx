@@ -25,9 +25,9 @@ export function Process({ coach }: { coach: CoachConfig }) {
   };
 
   return (
-    <Section id="process">
+    <Section id="process" className="pt-20">
       <motion.div
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
@@ -39,7 +39,7 @@ export function Process({ coach }: { coach: CoachConfig }) {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 shadow-sm mb-6"
           >
             <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            <span className="animate-shimmer bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
+            <span className="animate-shimmer bg-clip-text text-transparent bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
               Folyamat
             </span>
           </motion.div>
@@ -68,7 +68,7 @@ export function Process({ coach }: { coach: CoachConfig }) {
               {/* Step Number Badge */}
               <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
                 <div className="absolute inset-0 bg-blue-50 rounded-2xl group-hover:bg-blue-600 transition-colors duration-300" />
-                <div className="absolute -inset-2 border border-blue-100 rounded-[1.5rem] group-hover:border-blue-200 transition-colors duration-300 opacity-50" />
+                <div className="absolute -inset-2 border border-blue-100 rounded-3xl group-hover:border-blue-200 transition-colors duration-300 opacity-50" />
                 <span className="relative z-10 text-2xl font-black text-blue-600 group-hover:text-white transition-colors duration-300">
                   {idx + 1}
                 </span>

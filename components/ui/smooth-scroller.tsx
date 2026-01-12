@@ -5,9 +5,19 @@ import Lenis from "lenis";
 
 export function SmoothScroller() {
   useEffect(() => {
+    // 1. Akadálymentesítés: Ha a felhasználó nem kér animációt, ne fussunk feleslegesen
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    // 2. Lenis inicializálás
     const lenis = new Lenis({
-      duration: 1, // Minél nagyobb, annál "lassabb" és puhább a scroll (alap: 1.0)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Finom megállás (ease-out)
+      duration: 1.2, // Picit növeltem a puhább érzetért (1 -> 1.2)
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
@@ -15,16 +25,21 @@ export function SmoothScroller() {
       touchMultiplier: 2,
     });
 
-    // A Lenis-nek szüksége van a folyamatos frissítésre (requestAnimationFrame)
+    // 3. RAF loop kezelése (változóban tárolva a cancel-hez)
+    let rafHandle: number;
+
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafHandle = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    // Indítás
+    rafHandle = requestAnimationFrame(raf);
 
+    // 4. Cleanup function: Mindent takarítunk unmountkor
     return () => {
-      lenis.destroy();
+      cancelAnimationFrame(rafHandle); // Loop leállítása
+      lenis.destroy();                 // Lenis példány törlése
     };
   }, []);
 

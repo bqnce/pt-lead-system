@@ -11,7 +11,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={`py-14 ${className}`}>
+    <section id={id} className={`scroll-mt-28 ${className ? className : ""}`}>
       <Container>{children}</Container>
     </section>
   );

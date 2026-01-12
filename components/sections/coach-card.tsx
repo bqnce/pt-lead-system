@@ -10,25 +10,28 @@ export function CoachCard({ coach }: { coach: CoachConfig }) {
   return (
     <Section id="coachCard">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial="false"
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="mx-auto max-w-6xl group relative overflow-hidden rounded-[3rem] border border-slate-100 bg-white p-8 md:p-12 shadow-[0_48px_96px_-24px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_64px_128px_-32px_rgba(59,130,246,0.12)]"
       >
         {/* Decorative Background Accent */}
-        <div className="absolute top-0 right-0 w-[40%] h-[100%] bg-blue-50/30 -z-10 translate-x-1/2 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[40%] h-full bg-blue-50/30 -z-10 translate-x-1/2 rounded-full blur-[120px]" />
 
         <div className="grid gap-12 lg:grid-cols-12 items-center">
           {/* --- LEFT SIDE: Image & Stats --- */}
           <div className="lg:col-span-5 flex flex-col gap-8">
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-2xl ring-8 ring-white">
+            <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-2xl ring-8 ring-white">
               <img
-                src={coach.brand.avatarUrl ?? "https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&q=80&w=1000"}
+                src={
+                  coach.brand.avatarUrl ??
+                  "https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&q=80&w=1000"
+                }
                 alt={coach.brand.name}
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>
 
             {/* Premium Stat Matrix */}
@@ -54,7 +57,7 @@ export function CoachCard({ coach }: { coach: CoachConfig }) {
           {/* --- RIGHT SIDE: Content --- */}
           <div className="lg:col-span-7 flex flex-col items-start">
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
+              initial="false"
               whileInView={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3 mb-6"
             >
@@ -85,21 +88,31 @@ export function CoachCard({ coach }: { coach: CoachConfig }) {
                   "{coach.coach.bio}"
                 </p>
                 <p className="mt-6 text-base text-slate-500 leading-relaxed font-medium">
-                  Hiszek abban, hogy a változás fejben dől el, de a testben válik láthatóvá. A közös munka során nemcsak edzünk, hanem egy olyan fenntartható rendszert építünk, ami az életed minden területére pozitív hatással lesz.
+                  Hiszek abban, hogy a változás fejben dől el, de a testben
+                  válik láthatóvá. A közös munka során nemcsak edzünk, hanem egy
+                  olyan fenntartható rendszert építünk, ami az életed minden
+                  területére pozitív hatással lesz.
                 </p>
               </div>
             </div>
 
             <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{duration: 0.05, ease: "easeInOut"}}
-              onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-              className="group relative inline-flex items-center justify-center rounded-2xl bg-slate-900 px-10 py-5 text-sm font-black uppercase tracking-widest text-white transition-all shadow-xl hover:bg-slate-800 cursor-pointer overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={() =>
+                document
+                  .getElementById("apply")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 px-10 py-5 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* A Shine (Fénycsík) effekt */}
+              <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
+
+              {/* Szöveg és Ikon */}
               <span className="relative z-10">Konzultáció kérése</span>
-              <ArrowRight className="relative z-10 ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="relative z-10 ml-3 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </motion.button>
           </div>
         </div>

@@ -3,14 +3,63 @@ import { LeadPayload } from "@/lib/validation/lead";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+/**
+ * Biztonsági segédfüggvény:
+ * Kicseréli a veszélyes karaktereket, hogy ne lehessen HTML/Script kódot injektálni.
+ */
+function escapeHtml(unsafe: string | null | undefined): string {
+  if (!unsafe) return "";
+  return String(unsafe)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function sendLeadEmail(lead: LeadPayload) {
+  // 1. ADATOK TISZTÍTÁSA (Security)
+  const safeName = escapeHtml(lead.name);
+  const safeContact = escapeHtml(lead.contact);
+  const safeGoal = escapeHtml(lead.goal || "Nincs megadva");
+  const safeExperience = escapeHtml(lead.experience || "Nincs megadva");
+  const safeAvailability = escapeHtml(lead.availability || "Nincs megadva");
+  
+  // A sortöréseket (<br>) csak az escape UTÁN tesszük be, hogy biztonságos legyen
+  const safeMessage = escapeHtml(lead.message || "Nem hagyott üzenetet.")
+    .replace(/\n/g, "<br/>");
+
+  // Design változók
   const primaryColor = "#2563eb";
   const secondaryColor = "#4f46e5";
   const bgColor = "#f8fafc";
   const textColor = "#0f172a";
   const labelColor = "#94a3b8";
 
-  const html = `
+  // 2. PLAIN TEXT VERZIÓ (Deliverability)
+  // Ez kritikus, hogy ne kerülj Spam-be!
+  const textContent = `
+ÚJ JELENTKEZÉS ÉRKEZETT!
+------------------------
+Program: ${lead.coachName}
+
+Név: ${lead.name}
+Elérhetőség: ${lead.contact}
+
+Fő cél: ${lead.goal || "-"}
+Tapasztalat: ${lead.experience || "-"}
+Időbeosztás: ${lead.availability || "-"}
+
+Üzenet:
+${lead.message || "Nem hagyott üzenetet."}
+
+------------------------
+Forrás: /${lead.slug}
+  `.trim();
+
+  // 3. HTML VERZIÓ (A te szép designoddal)
+  // Fontos: Itt már a 'safe...' változókat használjuk!
+  const htmlContent = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -47,45 +96,33 @@ export async function sendLeadEmail(lead: LeadPayload) {
             <table class="data-grid">
               <tr class="data-row">
                 <td class="data-label">Név</td>
-                <td class="data-value">${lead.name}</td>
+                <td class="data-value">${safeName}</td>
               </tr>
               <tr class="data-row">
                 <td class="data-label">Elérhetőség</td>
-                <td class="data-value"><a href="mailto:${
-                  lead.contact
-                }" class="link">${lead.contact}</a></td>
+                <td class="data-value"><a href="mailto:${safeContact}" class="link">${safeContact}</a></td>
               </tr>
               <tr class="data-row">
                 <td class="data-label">Fő cél</td>
-                <td class="data-value">${lead.goal || "Nincs megadva"}</td>
+                <td class="data-value">${safeGoal}</td>
               </tr>
               <tr class="data-row">
                 <td class="data-label">Tapasztalat</td>
-                <td class="data-value">${
-                  lead.experience || "Nincs megadva"
-                }</td>
+                <td class="data-value">${safeExperience}</td>
               </tr>
               <tr class="data-row">
                 <td class="data-label">Időbeosztás</td>
-                <td class="data-value">${
-                  lead.availability || "Nincs megadva"
-                }</td>
+                <td class="data-value">${safeAvailability}</td>
               </tr>
             </table>
 
             <div class="message-box">
               <div class="message-label">Bemutatkozás & Üzenet</div>
-              <p class="message-text">${
-                lead.message
-                  ? lead.message.replace(/\n/g, "<br/>")
-                  : "Az érdeklődő nem hagyott üzenetet."
-              }</p>
+              <p class="message-text">${safeMessage}</p>
             </div>
           </div>
           <div class="footer">
-            <span class="footer-text">Forrás: <a href="https://yourdomain.com/${
-              lead.slug
-            }" class="link">/${lead.slug}</a></span>
+            <span class="footer-text">Forrás: <a href="https://yourdomain.com/${lead.slug}" class="link">/${lead.slug}</a></span>
           </div>
         </div>
       </body>
@@ -93,9 +130,11 @@ export async function sendLeadEmail(lead: LeadPayload) {
   `;
 
   await resend.emails.send({
-    from: "Lead <onboarding@resend.dev>",
+    from: "Lead <onboarding@resend.dev>", // Élesben: sajat-domain@pl.com
     to: lead.emailTo,
+    replyTo: lead.contact, // Így a "Válasz" gomb rögtön az ügyfélnek megy
     subject: `🚀 Új jelentkező: ${lead.name}`,
-    html,
+    text: textContent, // Plain text verzió
+    html: htmlContent, // HTML verzió
   });
 }

@@ -25,9 +25,9 @@ export function ForWho({ coach }: { coach: CoachConfig }) {
   };
 
   return (
-    <Section id="for-who">
+    <Section id="for-who" className="pt-20">
       <motion.div
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
@@ -39,7 +39,7 @@ export function ForWho({ coach }: { coach: CoachConfig }) {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 shadow-sm mb-6"
           >
             <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            <span className="animate-shimmer bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
+            <span className="animate-shimmer bg-clip-text text-transparent bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
               Célközönség
             </span>
           </motion.div>
@@ -76,7 +76,7 @@ export function ForWho({ coach }: { coach: CoachConfig }) {
             <ul className="space-y-6">
               {data.items.map((item, i) => (
                 <li key={i} className="flex items-start gap-4 group/item">
-                  <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 border border-blue-100 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors duration-300">
+                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 border border-blue-100 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors duration-300">
                     <Check className="h-3.5 w-3.5" strokeWidth={4} />
                   </div>
                   <span className="text-slate-600 font-semibold leading-relaxed group-hover/item:text-slate-900 transition-colors">
@@ -105,7 +105,7 @@ export function ForWho({ coach }: { coach: CoachConfig }) {
               <ul className="space-y-6">
                 {data.notFor.map((item, i) => (
                   <li key={i} className="flex items-start gap-4 opacity-60 group-hover:opacity-100 transition-opacity">
-                    <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-white text-rose-300 border border-slate-100 group-hover:bg-rose-50 group-hover:text-rose-500 group-hover:border-rose-100 transition-colors">
+                    <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-white text-rose-300 border border-slate-100 group-hover:bg-rose-50 group-hover:text-rose-500 group-hover:border-rose-100 transition-colors">
                       <X className="h-3.5 w-3.5" strokeWidth={4} />
                     </div>
                     <span className="text-slate-500 font-bold leading-relaxed group-hover:text-slate-700 transition-colors">

@@ -28,7 +28,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
   };
 
   return (
-    <Section id="pricing">
+    <Section id="pricing" className="pt-20">
       {/* Decorative background element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50" />
@@ -37,7 +37,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
 
       <div className="text-center mb-16 relative">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={false}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm mb-6"
@@ -49,7 +49,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight"
@@ -59,7 +59,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
 
         {pricing.subtitle && (
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
@@ -72,7 +72,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
 
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={{ once: true }}
         className="mt-12 grid gap-8 md:grid-cols-3 relative z-10"
@@ -85,14 +85,14 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
               key={plan.id}
               variants={cardVariants}
               whileHover={{ y: -10 }}
-              className={`group relative flex flex-col rounded-[2rem] p-8 transition-all duration-300 ${
+              className={`group relative flex flex-col rounded-4xl p-8 transition-all duration-300 ${
                 isHot
                   ? "bg-white border-2 border-blue-500 shadow-[0_20px_50px_rgba(59,130,246,0.15)] ring-4 ring-blue-500/5 scale-105 z-20"
                   : "bg-white/80 border border-slate-200 backdrop-blur-md shadow-sm hover:shadow-xl hover:border-slate-300"
               }`}
             >
               {isHot && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl ring-2 ring-white">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-blue-600 to-indigo-600 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl ring-2 ring-white">
                   <Zap className="w-3 h-3 fill-current" />
                   Legnépszerűbb
                 </div>
@@ -119,13 +119,13 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
                 </div>
               </div>
 
-              <div className="flex-grow">
+              <div className="grow">
                 <div className="h-px w-full bg-slate-100 mb-6" />
                 <ul className="space-y-4">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-3 group/item">
                       <div
-                        className={`mt-0.5 rounded-full p-0.5 flex-shrink-0 transition-colors ${
+                        className={`mt-0.5 rounded-full p-0.5 shrink-0 transition-colors ${
                           isHot
                             ? "bg-blue-100 text-blue-600"
                             : "bg-slate-100 text-slate-500"
@@ -169,7 +169,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
       <div className="mt-16 flex flex-col items-center gap-6">
         {pricing.disclaimer && (
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             whileInView={{ opacity: 1 }}
             className="text-xs text-slate-400 font-medium italic text-center max-w-md"
           >
@@ -178,7 +178,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
         )}
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           className="flex flex-wrap justify-center gap-8 py-4 px-8 rounded-2xl bg-slate-100/50 border border-slate-200/50"
         >

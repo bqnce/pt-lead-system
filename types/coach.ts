@@ -5,6 +5,12 @@ export type CoachTemplate =
   | "energetic"
   | "classic";
 
+export type CoachNavItem = {
+  id: string; // pl. "process" (anchor id)
+  label: string; // pl. "Folyamat"
+  show?: boolean; // opcionális: gyors ki/be
+};
+
 export type CoachConfig = {
   slug: string;
   template: CoachTemplate;
@@ -13,6 +19,14 @@ export type CoachConfig = {
     name: string;
     city?: string;
     avatarUrl?: string; // /public vagy remote
+  };
+
+  nav?: {
+    items: CoachNavItem[];
+    cta?: {
+      label: string;   // pl. "Jelentkezem"
+      href: string;    // pl. "#apply"
+    };
   };
 
   coach: {
