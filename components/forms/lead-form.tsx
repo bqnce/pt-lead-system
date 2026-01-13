@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Section } from "@/components/layout/section";
 import { CoachConfig } from "@/types/coach";
 import { CustomSelect } from "./CustomSelect";
+import { SectionHeader } from "@/components/ui/section-header";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
@@ -69,36 +70,12 @@ export function LeadForm({ coach }: { coach: CoachConfig }) {
   return (
     <Section id="apply" className="pt-20 pb-20">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-20 text-center">
-          <motion.div
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 shadow-sm mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            <span className="animate-shimmer bg-clip-text text-transparent bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
-              Kapcsolat
-            </span>
-          </motion.div>
-          <motion.h2
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight mb-6"
-          >
-            Vágjunk bele a közös munkába
-          </motion.h2>
-          <motion.p
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-lg text-slate-500 font-medium max-w-xl mx-auto"
-          >
-            Töltsd ki az alábbi űrlapot, és {coach.brand.name} 24 órán belül
-            felveszi veled a kapcsolatot egy ingyenes konzultáció miatt.
-          </motion.p>
-        </div>
+        <SectionHeader
+          badge="Kapcsolat"
+          title="Vágjunk bele a közös munkába"
+          description="Töltsd ki az alábbi űrlapot, és 24 órán belül felveszem veled a kapcsolatot egy ingyenes konzultáció miatt."
+          centered={true}
+        />
 
         <motion.div
           initial={false}

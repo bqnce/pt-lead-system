@@ -17,14 +17,18 @@ export const Navbar: React.FC<NavbarProps> = ({ coach }) => {
   const navItems = nav?.items ?? [];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = (idOrHash: string) => {
     setIsOpen(false);
-  
+
     // elfogad "apply" és "#apply" formátumot is
     const id = idOrHash.startsWith("#") ? idOrHash.slice(1) : idOrHash;
 

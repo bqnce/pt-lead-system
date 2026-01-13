@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Sparkles, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react"; // Sparkles törölve
 import { Section } from "@/components/layout/section";
+import { SectionHeader } from "@/components/ui/section-header"; // <--- Új import
 import { CoachConfig, Testimonial } from "@/types/coach";
 
 function Stars({ rating = 5 }: { rating?: 1 | 2 | 3 | 4 | 5 }) {
@@ -67,43 +68,17 @@ export function Testimonials({ coach }: { coach: CoachConfig }) {
         <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-40" />
       </div>
 
-      <div className="text-center mb-16 relative">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm mb-6"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">
-            Sikertörténetek
-          </span>
-        </motion.div>
+      {/* --- ÚJ HEADERT HASZNÁLJUK --- */}
+      <SectionHeader 
+        badge="Sikertörténetek"
+        title={t.title ?? "Visszajelzések"}
+        description={t.subtitle}
+        centered={true}
+        className="relative z-10"
+      />
 
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight"
-        >
-          {t.title ?? "Visszajelzések"}
-        </motion.h2>
-
-        {t.subtitle && (
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed"
-          >
-            {t.subtitle}
-          </motion.p>
-        )}
-      </div>
-
-      <div className="max-w-4xl mx-auto relative px-4">
-        {/* Carousel Controls */}
+      <div className="max-w-4xl mx-auto relative px-4 z-10">
+        {/* Carousel Controls (Desktop) */}
         <div className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 z-30 hidden sm:block">
           <motion.button
             whileHover={{ x: -4, scale: 1.05 }}
@@ -184,7 +159,7 @@ export function Testimonials({ coach }: { coach: CoachConfig }) {
            </button>
         </div>
 
-        {/* Pagination Dots styled like pricing navigation cues */}
+        {/* Pagination Dots */}
         <div className="mt-12 flex justify-center gap-2.5">
           {t.items.map((_: Testimonial, idx: number) => (
             <button

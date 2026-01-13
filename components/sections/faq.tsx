@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { Section } from "@/components/layout/section";
+import { SectionHeader } from "@/components/ui/section-header"; // <--- Új import
 import { CoachConfig } from "@/types/coach";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, Sparkles } from "lucide-react";
+import { Plus, Minus } from "lucide-react"; // Sparkles törölve
 
 function FAQItem({
   question,
@@ -93,34 +94,13 @@ export function FAQ({ coach }: { coach: CoachConfig }) {
   return (
     <Section id="faq" className="pt-20">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-20 text-center">
-          <motion.div
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            <span className="animate-shimmer bg-clip-text text-transparent bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
-              Tudnivalók
-            </span>
-          </motion.div>
-
-          <motion.h2
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight"
-          >
-            Gyakori kérdések
-          </motion.h2>
-          <motion.div
-            initial={false}
-            whileInView={{ width: "80px" }}
-            viewport={{ once: true }}
-            className="mt-4 h-1.5 bg-blue-600 rounded-full mx-auto"
-          />
-        </div>
+        
+        {/* --- ÚJ HEADERT HASZNÁLJUK --- */}
+        <SectionHeader 
+          badge="Tudnivalók"
+          title="Gyakori kérdések"
+          centered={true}
+        />
 
         <motion.div
           initial={false}

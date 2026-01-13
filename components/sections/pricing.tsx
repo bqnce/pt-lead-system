@@ -1,9 +1,10 @@
 "use client";
 
 import { Section } from "@/components/layout/section";
+import { SectionHeader } from "@/components/ui/section-header"; // <--- Új import
 import { CoachConfig } from "@/types/coach";
 import { motion, Variants } from "framer-motion";
-import { Check, Sparkles, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { Check, ArrowRight, ShieldCheck, Zap } from "lucide-react"; // Sparkles törölve
 
 export function Pricing({ coach }: { coach: CoachConfig }) {
   const pricing = coach.sections.pricing;
@@ -28,47 +29,21 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
   };
 
   return (
-    <Section id="pricing" className="pt-20">
+    <Section id="pricing" className="pt-20 relative overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50" />
       </div>
 
-      <div className="text-center mb-16 relative">
-        <motion.div
-          initial={false}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm mb-6"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">
-            Befektetés önmagadba
-          </span>
-        </motion.div>
-
-        <motion.h2
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight"
-        >
-          {pricing.title ?? "Csomagok"}
-        </motion.h2>
-
-        {pricing.subtitle && (
-          <motion.p
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed"
-          >
-            {pricing.subtitle}
-          </motion.p>
-        )}
-      </div>
+      {/* --- ÚJ HEADERT HASZNÁLJUK --- */}
+      <SectionHeader
+        badge="Befektetés önmagadba"
+        title={pricing.title ?? "Csomagok"}
+        description={pricing.subtitle} // Ha van subtitle, itt jelenik meg
+        centered={true}
+        className="relative z-10"
+      />
 
       <motion.div
         variants={containerVariants}
@@ -92,7 +67,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
               }`}
             >
               {isHot && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-blue-600 to-indigo-600 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl ring-2 ring-white">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl ring-2 ring-white">
                   <Zap className="w-3 h-3 fill-current" />
                   Legnépszerűbb
                 </div>
@@ -166,11 +141,12 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
         })}
       </motion.div>
 
-      <div className="mt-16 flex flex-col items-center gap-6">
+      <div className="mt-16 flex flex-col items-center gap-6 relative z-10">
         {pricing.disclaimer && (
           <motion.p
             initial={false}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             className="text-xs text-slate-400 font-medium italic text-center max-w-md"
           >
             * {pricing.disclaimer}
@@ -180,7 +156,8 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
         <motion.div
           initial={false}
           whileInView={{ opacity: 1, y: 0 }}
-          className="flex flex-wrap justify-center gap-8 py-4 px-8 rounded-2xl bg-slate-100/50 border border-slate-200/50"
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-8 py-4 px-8 rounded-2xl bg-slate-100/50 border border-slate-200/50 backdrop-blur-sm"
         >
           <div className="flex items-center gap-2 text-slate-500">
             <ShieldCheck className="w-4 h-4" />

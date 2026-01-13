@@ -1,9 +1,10 @@
 "use client";
 
 import { Section } from "@/components/layout/section";
+import { SectionHeader } from "@/components/ui/section-header"; // <--- Új import
 import { CoachConfig } from "@/types/coach";
 import { motion, Variants } from "framer-motion";
-import { MoveRight, Sparkles } from "lucide-react";
+import { MoveRight } from "lucide-react"; // Sparkles törölve, MoveRight maradt a nyilakhoz
 
 export function Process({ coach }: { coach: CoachConfig }) {
   const data = coach.sections.process;
@@ -20,7 +21,7 @@ export function Process({ coach }: { coach: CoachConfig }) {
       opacity: 1, 
       y: 0, 
       scale: 1,
-      transition: { duration: 0.05, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } 
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } 
     },
   };
 
@@ -33,29 +34,13 @@ export function Process({ coach }: { coach: CoachConfig }) {
         variants={containerVariants}
         className="mx-auto max-w-6xl"
       >
-        <div className="mb-20 text-center max-w-3xl mx-auto">
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 shadow-sm mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            <span className="animate-shimmer bg-clip-text text-transparent bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700 text-[10px] font-black uppercase tracking-[0.25em]">
-              Folyamat
-            </span>
-          </motion.div>
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight mb-6"
-          >
-            Hogyan zajlik a közös munka?
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-slate-500 font-medium"
-          >
-            Egyszerű, átlátható lépések – hogy tudd, mire számíthatsz az út során.
-          </motion.p>
-        </div>
+        {/* --- ÚJ HEADERT HASZNÁLJUK --- */}
+        <SectionHeader 
+          badge="Folyamat"
+          title="Hogyan zajlik a közös munka?"
+          description="Egyszerű, átlátható lépések – hogy tudd, mire számíthatsz az út során."
+          centered={true}
+        />
 
         <div className="grid gap-10 md:grid-cols-3 relative">
           {data.steps.map((s, idx) => (
@@ -63,7 +48,7 @@ export function Process({ coach }: { coach: CoachConfig }) {
               key={s.title}
               variants={itemVariants}
               whileHover={{ y: -10 }}
-              className="group relative flex flex-col rounded-[2.5rem] border border-slate-200/60 p-10 shadow-sm transition-all duration-300 hover:shadow-[0_32px_64px_-16px_rgba(59,130,246,0.12)] hover:border-blue-200 backdrop-blur-md"
+              className="group relative flex flex-col rounded-[2.5rem] border border-slate-200/60 p-10 shadow-sm transition-all duration-300 hover:shadow-[0_32px_64px_-16px_rgba(59,130,246,0.12)] hover:border-blue-200 backdrop-blur-md bg-white/50"
             >
               {/* Step Number Badge */}
               <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
