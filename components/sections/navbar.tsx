@@ -27,15 +27,19 @@ export const Navbar: React.FC<NavbarProps> = ({ coach }) => {
   }, []);
 
   const handleNavClick = (idOrHash: string) => {
+    // 1. Először bezárjuk a menüt
     setIsOpen(false);
 
-    // elfogad "apply" és "#apply" formátumot is
-    const id = idOrHash.startsWith("#") ? idOrHash.slice(1) : idOrHash;
-
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // 2. Egy pici késleltetés (100ms) kell mobilon, hogy a menü bezáródása
+    // ne zavarja meg a görgetést.
+    setTimeout(() => {
+      const id = idOrHash.startsWith("#") ? idOrHash.slice(1) : idOrHash;
+      const el = document.getElementById(id);
+      
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   return (
@@ -80,20 +84,16 @@ export const Navbar: React.FC<NavbarProps> = ({ coach }) => {
           {/* Main CTA Button */}
           {nav?.cta
             ? (() => {
-                const ctaId = nav.cta.href; // lehet "#apply" is
+                const ctaId = nav.cta.href; 
                 const ctaLabel = nav.cta.label;
 
                 return (
                   <button
                     onClick={() => handleNavClick(ctaId)}
-                    // A 'bg-gradient-to-r from-blue-600 to-indigo-600' most már alapból rajta van, nem hoverre
                     className="group relative flex items-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-3 text-xs font-black uppercase tracking-[0.15em] text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:scale-105 hover:shadow-blue-600/40 cursor-pointer"
                   >
-                    {/* A Shine (Fénycsík) effekt - ez marad a hoverre */}
                     <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
-
                     <span className="relative z-10">{ctaLabel}</span>
-
                     <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                 );
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ coach }) => {
 
         {/* Mobile Toggle */}
         <button
-          className="p-2 text-slate-900 lg:hidden"
+          className="p-2 text-slate-900 lg:hidden cursor-pointer"
           onClick={() => setIsOpen((v) => !v)}
           aria-label="Toggle Menu"
         >
@@ -127,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ coach }) => {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
-                    className="border-b border-slate-50 pb-2 text-left text-lg font-bold text-slate-900"
+                    className="border-b border-slate-50 pb-2 text-left text-lg font-bold text-slate-900 active:text-blue-600 cursor-pointer"
                   >
                     {item.label}
                   </button>
@@ -136,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ coach }) => {
               {/* Mobile CTA */}
               <button
                 onClick={() => handleNavClick(nav?.cta?.href ?? "#apply")}
-                className="flex w-full items-center justify-center gap-3 rounded-2xl bg-slate-900 p-5 text-sm font-black uppercase tracking-widest text-white shadow-xl"
+                className="flex w-full items-center justify-center gap-3 rounded-2xl bg-slate-900 p-5 text-sm font-black uppercase tracking-widest text-white shadow-xl active:scale-95 transition-transform cursor-pointer"
               >
                 {nav?.cta?.label ?? "Jelentkezés"}
                 <ArrowRight className="h-5 w-5" />
