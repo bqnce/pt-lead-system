@@ -238,6 +238,35 @@ export function LeadForm({ coach }: { coach: CoachConfig }) {
                   </motion.div>
                 </div>
 
+                <div className="md:col-span-2">
+                  <div className="flex items-start gap-3">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="privacy"
+                        name="privacy"
+                        type="checkbox"
+                        required // EZT NE FELEJTSD EL!
+                        className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                      />
+                    </div>
+                    <label
+                      htmlFor="privacy"
+                      className="text-xs text-slate-500 font-medium leading-5"
+                    >
+                      Elolvastam és elfogadom az{" "}
+                      <a
+                        href="/adatkezeles"
+                        target="_blank"
+                        className="text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:text-blue-700"
+                      >
+                        Adatkezelési Tájékoztatót
+                      </a>
+                      , és hozzájárulok adataim kezeléséhez a kapcsolatfelvétel
+                      érdekében.
+                    </label>
+                  </div>
+                </div>
+
                 <div className="pt-8 flex flex-col items-center gap-6">
                   <motion.button
                     whileHover={{ scale: 1.02, y: -2 }}
