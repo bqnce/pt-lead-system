@@ -68,10 +68,12 @@ function FAQItem({
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            initial={false}
+            key="content"
+            initial={{ height: 0, opacity: 0 }} // <--- EZ VOLT A HIÁNYZÓ RÉSZ
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden" // Fontos, hogy a tartalom ne lógjon ki animálás közben
           >
             <div className="px-8 pb-8 pt-0">
               <div className="border-t border-slate-100 pt-6">
@@ -94,9 +96,8 @@ export function FAQ({ coach }: { coach: CoachConfig }) {
   return (
     <Section id="faq" className="pt-20">
       <div className="mx-auto max-w-4xl">
-        
         {/* --- ÚJ HEADERT HASZNÁLJUK --- */}
-        <SectionHeader 
+        <SectionHeader
           badge="Tudnivalók"
           title="Gyakori kérdések"
           centered={true}

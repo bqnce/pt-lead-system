@@ -50,7 +50,7 @@ export function SectionHeader({
             <span className={cn(
               "bg-clip-text text-transparent text-[10px] font-black uppercase tracking-[0.25em]",
               dark 
-                ? "bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-400" 
+                ? "bg-linear-to-r from-blue-400 via-indigo-300 to-blue-400" 
                 : "animate-shimmer bg-linear-to-r from-blue-700 via-indigo-500 to-blue-700"
             )}>
               {badge}

@@ -67,7 +67,7 @@ export function Pricing({ coach }: { coach: CoachConfig }) {
               }`}
             >
               {isHot && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl ring-2 ring-white">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-blue-600 to-indigo-600 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 shadow-xl ring-2 ring-white">
                   <Zap className="w-3 h-3 fill-current" />
                   Legnépszerűbb
                 </div>

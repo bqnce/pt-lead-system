@@ -173,15 +173,18 @@ export function Hero({ coach }: { coach: CoachConfig }) {
           className="lg:col-span-5 relative flex justify-center lg:justify-end"
         >
           <div className="relative w-full max-w-[420px] group">
-            {/* The actual image container */}
+            {/* JAVÍTÁS: next/image használata priority-vel és fill-lel */}
             <div className="relative aspect-4/5 overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] transition-transform duration-700 hover:shadow-[0_48px_80px_-24px_rgba(0,0,0,0.16)]">
-              <img
+              <Image
                 src={
                   coach.hero.heroImageUrl ||
                   "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1000"
                 }
                 alt={`${coach.brand.name} hero`}
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               {/* Subtle Overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

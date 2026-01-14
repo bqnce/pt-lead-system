@@ -23,13 +23,15 @@ export function CoachCard({ coach }: { coach: CoachConfig }) {
           {/* --- LEFT SIDE: Image & Stats --- */}
           <div className="lg:col-span-5 flex flex-col gap-8">
             <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-2xl ring-8 ring-white">
-              <img
+              <Image
                 src={
                   coach.brand.avatarUrl ??
                   "https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&q=80&w=1000"
                 }
                 alt={coach.brand.name}
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>

@@ -1,13 +1,31 @@
-import Link from "next/link";
+import { getCoachBySlug } from "@/content/coaches";
+import { TemplateMinimal } from "@/components/templates/template-minimal";
+// Itt importálod majd az egyedi sablonokat:
+// import { TemplateDani } from "@/components/templates/template-dani";
 
 export default function Home() {
-  return (
-    <main className="p-8">
-      <h1 className="text-2xl font-semibold">PT Lead System</h1>
-      <p className="mt-2 opacity-80">Demo:</p>
-      <Link className="mt-4 inline-block underline" href="/demo">
-        /demo
-      </Link>
-    </main>
-  );
+  // 1. KIVESSZÜK A VERCELEN BEÁLLÍTOTT VÁLTOZÓT
+  // Ez minden projektnél MÁS lesz! (bela, dani, stb.)
+  const slug = process.env.NEXT_PUBLIC_COACH_SLUG;
+
+  // Ha fejlesztés közben vagy és nincs beállítva, betölti a demót
+  const activeSlug = slug || "demo"; 
+
+  const coach = getCoachBySlug(activeSlug);
+
+  if (!coach) {
+    return <div>Hiba: Nincs ilyen edző konfiguráció ({activeSlug})</div>;
+  }
+
+  // 2. A CONFIG ALAPJÁN DÖNTÜNK A MEGJELENÉSRŐL
+  switch (coach.template) {
+    // Ha Dani configjában az van, hogy "custom-dani", ez fut le:
+    // case "custom-dani":
+    //   return <TemplateDani coach={coach} />;
+
+    // Ha Béla configjában az van, hogy "minimal", ez fut le:
+    case "minimal":
+    default:
+      return <TemplateMinimal coach={coach} />;
+  }
 }
